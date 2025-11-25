@@ -1,0 +1,10 @@
+01 Cavaleiro 100 20 15 1
+02 Mago 60 40 5 2
+03 Golem 150 10 30 3
+04 Assassino 70 35 5 1
+05 Paladino 120 15 20 2
+06 Esqueleto 40 10 0 3
+07 Dragao 200 50 20 1
+08 Elfo 80 25 10 3
+09 Vampiro 90 30 10 1
+10 Hidra 180 25 15 2

@@ -1,0 +1,50 @@
+=======================================================
+          JOGO DE CARTAS - BATALHA ELEMENTAL
+=======================================================
+
+[1] OBJETIVO
+    O objetivo do jogo e escolher uma carta e derrotar
+    a carta do oponente reduzindo a VIDA dele a 0.
+
+[2] ATRIBUTOS DAS CARTAS
+    Cada carta possui 5 informações na seguinte ordem:
+    1. Nome    (Texto)
+    2. Vida    (HP - Pontos de Vida)
+    3. Ataque  (Dano base causado)
+    4. Defesa  (Dano absorvido)
+    5. Elemento (Define vantagens e fraquezas)
+
+[3] SISTEMA DE ELEMENTOS
+    Os elementos são representados por números:
+    1 = FOGO
+    2 = AGUA
+    3 = TERRA
+
+    Regra de Vantagem (Dano Dobrado):
+    - AGUA (2) ganha de FOGO (1)
+    - TERRA (3) ganha de AGUA (2)
+    - FOGO (1) ganha de TERRA (3)
+
+[4] CALCULO DE COMBATE (LOGICA DO JOGO)
+    O jogo acontece em turnos. O calculo do dano deve
+    seguir a seguinte logica matemática:
+
+    Passo A: Verificar Vantagem Elemental
+    Se (ElementoAtacante vence ElementoDefensor):
+        AtaqueFinal = AtaqueBase * 2
+    Senao:
+        AtaqueFinal = AtaqueBase
+
+    Passo B: Calcular Dano Real
+    Dano = AtaqueFinal - DefesaDoOponente
+
+    * Nota: Se a Defesa for maior que o Ataque,
+      o Dano deve ser no mínimo 1 (Dano de arranhão).
+
+    Passo C: Aplicar Dano
+    VidaOponente = VidaOponente - Dano
+
+[5] FIM DE JOGO
+    O jogo termina quando a Vida de qualquer uma das
+    cartas chegar a 0 ou menos.
+

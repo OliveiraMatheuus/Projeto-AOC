@@ -1,0 +1,7 @@
+Offset,Dado,Tamanho,Descrição
+0,ID,4 bytes (word),"O número ""01"", ""02""..."
+4,Nome,20 bytes (string),"Espaço para o nome (ex: ""Cavaleiro"")"
+24,Vida,4 bytes (word),Vida atual (usada para salvar o jogo)
+28,Ataque,4 bytes (word),Dano
+32,Defesa,4 bytes (word),Defesa
+36,Elemento,4 bytes (word),"1, 2 ou 3"
