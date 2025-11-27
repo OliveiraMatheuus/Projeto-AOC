@@ -1,7 +1,7 @@
 # 🎮 Projeto AOC - Jogo de Cartas em Assembly
 
 ![Badge Assembly](https://img.shields.io/badge/Language-Assembly%20MIPS-red)
-![Badge Status](https://img.shields.io/badge/Status-Finalizado-green)
+![Badge Status](https://img.shields.io/badge/Status-Produção-red)
 
 > Projeto desenvolvido para a disciplina de **Arquitetura e Organização de Computadores (AOC)**. O objetivo é implementar um jogo de cartas funcional utilizando a linguagem Assembly e manipulação de arquivos.
 
