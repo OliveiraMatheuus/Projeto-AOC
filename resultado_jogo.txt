@@ -1,0 +1,6 @@
+2 Mago 60 40 5 2
+6 Esqueleto 40 10 0 3
+3 Golem 150 10 30 3
+4 Assassino 70 35 5 1
+1 Cavaleiro 100 20 15 1
+5 Paladino 120 15 20 2

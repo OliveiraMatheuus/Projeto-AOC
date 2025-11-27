@@ -5,3 +5,76 @@ Offset,Dado,Tamanho,Descrição
 28,Ataque,4 bytes (word),Dano
 32,Defesa,4 bytes (word),Defesa
 36,Elemento,4 bytes (word),"1, 2 ou 3"
+
+
+========================================================================
+RESUMO DE SYSCALLS PARA ARQUIVOS (MIPS)
+========================================================================
+------------------------------------------------------------------------
+SERVIÇO 4: IMPRIMIR STRING (Print String)
+------------------------------------------------------------------------
+O QUE FAZ: Imprime um texto (string) na tela (console).
+
+ENTRADAS (Argumentos):
+  $v0 = 4
+  $a0 = Endereço da string terminada em nulo (onde o texto começa na memória).
+
+SAÍDA (Retorno):
+  Nenhuma.
+
+------------------------------------------------------------------------
+SERVIÇO 13: ABRIR ARQUIVO (Open File)
+------------------------------------------------------------------------
+O QUE FAZ: Abre um arquivo para leitura ou escrita.
+
+ENTRADAS (Argumentos):
+  $v0 = 13
+  $a0 = Endereço da string (terminada em nulo) com o nome do arquivo.
+  $a1 = Flags (0 = Leitura, 1 = Escrita, 9 = Append/Anexar).
+  $a2 = Modo (Geralmente 0, ignorado na maioria dos simuladores).
+
+SAÍDA (Retorno):
+  $v0 = Contém o DESCRITOR DE ARQUIVO (File Descriptor).
+        (Retorna um número negativo se houver erro).
+
+------------------------------------------------------------------------
+SERVIÇO 14: LER DO ARQUIVO (Read from File)
+------------------------------------------------------------------------
+O QUE FAZ: Lê o conteúdo do arquivo e joga na memória RAM.
+
+ENTRADAS (Argumentos):
+  $v0 = 14
+  $a0 = Descritor de arquivo (o valor que você recebeu no serviço 13).
+  $a1 = Endereço do buffer de entrada (onde salvar os dados na memória).
+  $a2 = Número máximo de caracteres (bytes) para ler.
+
+SAÍDA (Retorno):
+  $v0 = Contém o número de caracteres realmente lidos.
+        (0 se chegou ao fim do arquivo, negativo se houver erro).
+
+------------------------------------------------------------------------
+SERVIÇO 15: ESCREVER NO ARQUIVO (Write to File)
+------------------------------------------------------------------------
+O QUE FAZ: Pega dados da memória e escreve no arquivo.
+
+ENTRADAS (Argumentos):
+  $v0 = 15
+  $a0 = Descritor de arquivo.
+  $a1 = Endereço do buffer de saída (onde estão os dados a escrever).
+  $a2 = Número de caracteres (bytes) para escrever.
+
+SAÍDA (Retorno):
+  $v0 = Contém o número de caracteres escritos.
+        (Retorna negativo se houver erro).
+
+------------------------------------------------------------------------
+SERVIÇO 16: FECHAR ARQUIVO (Close File)
+------------------------------------------------------------------------
+O QUE FAZ: Encerra o acesso ao arquivo e libera o descritor.
+
+ENTRADAS (Argumentos):
+  $v0 = 16
+  $a0 = Descritor de arquivo.
+
+SAÍDA (Retorno):
+  Nenhuma (vazio).
