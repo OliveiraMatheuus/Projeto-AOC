@@ -1123,8 +1123,6 @@ FimVerificaItem:
     addi $sp, $sp, 4
     jr   $ra
 
-
-# --- DESENHA O POWER-UP ---
 DesenhaItem:
     addi $sp, $sp, -4
     sw   $ra, 0($sp)
