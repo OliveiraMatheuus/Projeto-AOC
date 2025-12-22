@@ -75,11 +75,11 @@ Utilize o teclado para controlar o personagem:
 
 O código foi modularizado para facilitar a manutenção e leitura:
 
-- **`jogo1.asm`**: **Arquivo Principal.** Contém o loop do jogo (`game loop`), inicialização de variáveis, controle de estados, física de colisão e lógica das ondas.
+- **`jogo1.asm`**: **Arquivo Principal.** Contém o loop do jogo , inicialização de variáveis, controle de estados, física de colisão e lógica das ondas.
 - **`Macros.asm`**: Biblioteca de macros para abstrair operações complexas (desenho de pixels, delay, geração de números aleatórios e som).
-- **`menu.asm`**: Lógica e dados gráficos da Tela Inicial.
-- **`game_over.asm`**: Lógica e dados gráficos da Tela de Derrota.
-- **`game_win.asm`**: Lógica e dados gráficos da Tela de Vitória.
+- **`menu.asm`**:  Dados gráficos da Tela Inicial.
+- **`game_over.asm`**; Dados gráficos da Tela de Derrota.
+- **`game_win.asm`**: Dados gráficos da Tela de Vitória.
 
 ---
 
@@ -94,4 +94,4 @@ O código foi modularizado para facilitar a manutenção e leitura:
 
 ## 📝 Licença
 
-Este projeto foi desenvolvido para fins educacionais. Sinta-se à vontade para estudar o código, modificar e utilizar como referência para seus próprios projetos acadêmicos.
+Este projeto foi desenvolvido para fins educacionais. Sinta-se à vontade para estudar o código.
