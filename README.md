@@ -73,14 +73,6 @@ Coletar moedas
 
 Sobreviver às ondas
 
-🧩 Estrutura do Projeto
-📁 Projeto
- ├── jogo1.asm        # Arquivo principal do jogo
- ├── Macros.asm       # Macros auxiliares (sprites, delay, som, etc.)
- ├── menu.asm         # Tela de menu inicial
- ├── game_over.asm    # Tela de Game Over
- └── game_win.asm     # Tela de vitória
-
 ⚙️ Funcionamento do Código
 🔹 jogo1.asm
 
