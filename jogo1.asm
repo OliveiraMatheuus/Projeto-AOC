@@ -669,9 +669,9 @@ WaitRestart:
     lw   $t2, KDMMIO_DATA
     lw   $s4, 0($t2)
     
-    beq  $s4, 114, ResetTotal  # 'r' para Reiniciar
-    beq  $s4, 82,  ResetTotal  # 'R' maiúsculo
-    beq  $s4, 101, SaiDoJogo   # 'e' para Exit
+    beq  $s4, 114, ResetTotal  # r
+    beq  $s4, 82,  ResetTotal  # R
+    beq  $s4, 101, SaiDoJogo   # e
     j    WaitRestart
 
 ResetTotal:
@@ -959,8 +959,8 @@ ApagaSprite:
     sw   $s0, 4($sp)
     
     li   $s0, 0x10040000 
-    move $t2, $a0  # X original
-    move $t3, $a1  # Y original
+    move $t2, $a0  # X 
+    move $t3, $a1  # Y 
     li   $t6, 0    # Y offset
     
 ApagaLoopY:
@@ -977,7 +977,7 @@ ApagaLoopX:
     sll  $t8, $t8, 2
     add  $t8, $t8, $s0
     
-    sw   $zero, 0($t8)    # Pinta Preto (0)
+    sw   $zero, 0($t8)    # Pinta Preto 
     
     addi $t7, $t7, 1
     j    ApagaLoopX
@@ -1004,7 +1004,7 @@ LoopRedesenha:
     mul  $t2, $t0, 4
     lw   $t3, moedas_x($t2)
     
-    # Se X == -100, já foi coletada. Não desenha.
+    # Se X == -100, já foi coletada. 
     beq  $t3, -100, ProxRedesenha
     
     lw   $t4, moedas_y($t2)
@@ -1106,7 +1106,7 @@ VerificarColetaItem:
     
     play_midi(85, 200, 80, 127) # Som de PowerUp
     
-    li   $t0, 60               # Duração do efeito (aprox. 5 segundos)
+    li   $t0, 60               # Duração do efeito 
     sw   $t0, powerup_timer
     
     # Apaga o item da tela
