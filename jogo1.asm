@@ -19,7 +19,7 @@
     moedas_coletadas:   .word 0   
     
     # Controle de Velocidade com Contadores
-    frame_delay: .word 40   # Padrão: 40ms (25 FPS)
+    frame_delay: .word 40  
     delay_inimigos:     .word 0   
     VELOCIDADE_INIMIGO: .word 6   
     dir_atual: .word 0
@@ -32,6 +32,11 @@
 
     msg_gameover: .asciiz "\nGAME OVER! Tente novamente."
     msg_onda:     .asciiz "\n--- INICIANDO ONDA "
+    
+    item_x:       .word -100   
+    item_y:       .word -100   
+    item_tipo:    .word 0
+    powerup_timer:.word 0     
     
     sprite_player: .word
         0,0,0,0x00FFFF00,0x00FFFF00,0,0,0,
@@ -82,14 +87,8 @@
         0,0,0,0,0,0,0x00FFD700,0x00FFD700,
         0x00FFD700,0x00FFD700,0,0,0,0,0x00FFD700,0x00FFD700,
         0,0x00FFD700,0x00FFD700,0x00FFD700,0x00FFD700,0x00FFD700,0x00FFD700,0
-
-    # --- VARIÁVEIS DOS POWER-UPS ---
-    item_x:       .word -100   # Posição X do item (-100 = nenhum)
-    item_y:       .word -100   # Posição Y do item
-    item_tipo:    .word 0      # 1 = Pimenta, 2 = Gelo
-    powerup_timer:.word 0      # Tempo de duração do efeito
+        
     
-    # --- SPRITES ---
     sprite_pimenta: .word
         0,0,0,0x0000FF00,0,0,0,0,
         0,0,0,0x00FF0000,0,0,0,0,
@@ -109,6 +108,7 @@
         0x0000FFFF,0x0000FFFF,0,0x0000FFFF,0x0000FFFF,0,0x0000FFFF,0x0000FFFF,
         0x0000FFFF,0,0x0000FFFF,0x0000FFFF,0x0000FFFF,0x0000FFFF,0,0x0000FFFF,
         0,0x0000FFFF,0x0000FFFF,0x0000FFFF,0x0000FFFF,0x0000FFFF,0x0000FFFF,0
+        
     .include "menu.asm"
     .include "game_over.asm"
     .include "game_win.asm"
@@ -117,29 +117,26 @@
     
 j MenuPrincipal
 
-# --- LÓGICA DO MENU E DIFICULDADE ---
+
 MenuPrincipal:
-    # Desenha a tela de menu (128x128)
-    la   $a0, sprite_menu     # <--- NOME DA LABEL NO ARQUIVO MENU.ASM
+    
+    la   $a0, sprite_menu     
     jal  DesenhaTelaCheia
 
 WaitDificuldade:
-    # 1. Carrega o endereço do Controle do Teclado (0xffff0000)
-    li   $t0, 0xffff0000   # Use 'li', não 'lw'
     
-    # 2. Lê o bit de status
+    li   $t0, 0xffff0000   
+    
     lw   $t1, 0($t0)
     andi $t1, $t1, 1
     beqz $t1, WaitDificuldade
-
-    # 3. Lê o dado da tecla
+    
     li   $t2, 0xffff0004   # Endereço dos dados
     lw   $s4, 0($t2)
-    
-    # 4. Verifica qual tecla foi (1, 2 ou 3)
-    beq  $s4, 49, SetFacil   # Tecla '1'
-    beq  $s4, 50, SetNormal  # Tecla '2'
-    beq  $s4, 51, SetDificil # Tecla '3'
+   
+    beq  $s4, 49, SetFacil   
+    beq  $s4, 50, SetNormal  
+    beq  $s4, 51, SetDificil 
     
     j    WaitDificuldade
 
@@ -149,8 +146,8 @@ SetFacil:
     li   $t0, 7            # Inimigo Lento
     sw   $t0, VELOCIDADE_INIMIGO
     
-    li   $t0, 30           # Jogo na velocidade Normal (25 FPS)
-    sw   $t0, frame_delay    # <--- SALVA O DELAY
+    li   $t0, 30          
+    sw   $t0, frame_delay    
     
     j    IniciarJogo
 
@@ -160,8 +157,8 @@ SetNormal:
     li   $t0, 5
     sw   $t0, VELOCIDADE_INIMIGO
     
-    li   $t0, 20         # Jogo Acelerado (~33 FPS)
-    sw   $t0, frame_delay    # <--- SALVA O DELAY
+    li   $t0, 20         
+    sw   $t0, frame_delay    
     
     j    IniciarJogo
 
@@ -179,7 +176,7 @@ SetDificil:
 IniciarJogo:
     li   $t0, 0x10040000    # Base do Bitmap
     li   $t1, 0             # Contador
-    li   $t2, 16384         # Total de pixels (128x128)
+    li   $t2, 16384         
     
 LoopLimparTela:
     bge  $t1, $t2, FimLimpeza
