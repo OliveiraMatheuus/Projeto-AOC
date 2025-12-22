@@ -1,137 +1,97 @@
-🎮 Jogo em Assembly MIPS – MARS
+# 🎮 Jogo 2D em Assembly MIPS
 
-Este projeto consiste em um jogo 2D desenvolvido em Assembly MIPS, executado no simulador MARS, utilizando sprites 8x8, controle por teclado, sistema de ondas, inimigos, moedas, vidas e telas de menu, game over e vitória.
+![Language](https://img.shields.io/badge/Language-Assembly%20MIPS-blue)
+![Simulator](https://img.shields.io/badge/Simulator-MARS%204.5-orange)
+![University](https://img.shields.io/badge/University-UNIFESP-green)
 
-🎓 Contexto Acadêmico
+Este projeto consiste em um jogo 2D desenvolvido inteiramente em **Assembly MIPS**, executado no simulador **MARS**. O jogo utiliza renderização via Bitmap Display, sprites 8x8, sistema de ondas, física de colisão e reprodução de áudio via MIDI.
 
-Este jogo foi desenvolvido como projeto final da Unidade Curricular (UC) Arquitetura e Organização de Computadores, com o objetivo de aplicar, na prática, os conceitos estudados ao longo da disciplina.
+---
 
-O projeto foi desenvolvido sob orientação do professor Fabio Cappabianco, docente da Universidade Federal de São Paulo (UNIFESP) – campus São José dos Campos.
+## 🎓 Contexto Acadêmico
 
-🛠️ Requisitos
+Este jogo foi desenvolvido como **projeto final** da Unidade Curricular de **Arquitetura e Organização de Computadores**, com o objetivo de aplicar na prática conceitos de manipulação de memória, registradores, fluxo de controle e chamadas de sistema (syscalls).
 
-Para executar o projeto, é necessário:
+- **Instituição:** Universidade Federal de São Paulo (UNIFESP) – Campus São José dos Campos
+- **Curso:** Bacharelado em Ciência e Tecnologia / Engenharia da Computação
+- **Docente:** Prof. Fabio Cappabianco
+- **Autor:** Matheus Oliveira
 
-MARS MIPS Simulator
-[https://courses.missouristate.edu/KenVollmar/mars/](https://dpetersanderson.github.io/)
+---
 
-Java instalado
+## 🛠️ Requisitos
 
-Sistema operacional Windows, Linux ou macOS
+Para executar o projeto, você precisará de:
 
-▶️ Como executar o projeto
+1.  **Java Runtime Environment (JRE)** instalado.
+2.  **MARS MIPS Simulator**: [Download aqui](https://courses.missouristate.edu/KenVollmar/mars/).
 
-Abra o MARS
+---
 
-Clique em File → Open
+## ⚙️ Configuração Obrigatória (Bitmap Display)
 
-Abra o arquivo principal:
+⚠️ **IMPORTANTE:** Para que os gráficos apareçam corretamente, a ferramenta **Bitmap Display** do MARS deve ser configurada **exatamente** com os valores abaixo:
 
-jogo1.asm
+| Configuração | Valor |
+| :--- | :--- |
+| **Unit Width** | 4 pixels |
+| **Unit Height** | 4 pixels |
+| **Display Width** | 512 pixels |
+| **Display Height** | 512 pixels |
+| **Base Address** | **0x10040000 (Heap)** |
 
-Certifique-se de que os arquivos Macros.asm, menu.asm, game_over.asm e game_win.asm estejam na mesma pasta
+---
 
-Clique em Assemble
+## ▶️ Como Executar
 
-Execute o programa clicando em Run
+1. Abra o **MARS 4.5**.
+2. Vá em `File` -> `Open` e selecione o arquivo **`jogo1.asm`**.
+   > *Certifique-se de que os arquivos `Macros.asm`, `menu.asm`, `game_over.asm` e `game_win.asm` estejam na mesma pasta.*
+3. Vá em `Tools` -> `Bitmap Display`.
+4. Aplique as configurações listadas na tabela acima.
+5. No Bitmap Display, clique em **Connect to MIPS**.
+6. No editor do MARS, clique em **Assemble** (ícone de chave de fenda e chave inglesa) ou pressione `F3`.
+7. Clique em **Run** (ícone de play) ou pressione `F5`.
 
-🖥️ Configuração do Bitmap Display (Obrigatória)
+---
 
-O jogo utiliza o Bitmap Display do MARS para renderização gráfica.
-As configurações devem ser exatamente as seguintes:
+## ⌨️ Controles e Objetivos
 
-Unit Width (Pixels): 4
+Utilize o teclado para controlar o personagem:
 
-Unit Height (Pixels): 4
+- **`W`**: Mover para Cima
+- **`S`**: Mover para Baixo
+- **`A`**: Mover para Esquerda
+- **`D`**: Mover para Direita
 
-Display Width (Pixels): 512
+### 🎯 Objetivo
+1. **Sobreviver:** Desvie dos inimigos que aparecem em ondas.
+2. **Coletar:** Pegue as moedas para aumentar sua pontuação.
+3. **Vencer:** Complete todas as ondas para ver a tela de vitória.
 
-Display Height (Pixels): 512
+---
 
-Base Address: Heap (0x10040000)
+## 📂 Estrutura do Projeto
 
-Como configurar
+O código foi modularizado para facilitar a manutenção e leitura:
 
-No MARS, vá em Tools → Bitmap Display
+- **`jogo1.asm`**: **Arquivo Principal.** Contém o loop do jogo (`game loop`), inicialização de variáveis, controle de estados, física de colisão e lógica das ondas.
+- **`Macros.asm`**: Biblioteca de macros para abstrair operações complexas (desenho de pixels, delay, geração de números aleatórios e som).
+- **`menu.asm`**: Lógica e dados gráficos da Tela Inicial.
+- **`game_over.asm`**: Lógica e dados gráficos da Tela de Derrota.
+- **`game_win.asm`**: Lógica e dados gráficos da Tela de Vitória.
 
-Configure os valores acima
+---
 
-Clique em Connect to MIPS
+## 🎨 Detalhes Técnicos
 
-Execute o jogo normalmente
+- **Gráficos:** Renderização direta na memória Heap. Sprites desenhados pixel a pixel (formato 8x8). Cores em hexadecimal (ARGB).
+- **Áudio:** Uso de Syscall MIDI (31 e 33) para efeitos sonoros síncronos e assíncronos.
+- **Colisão:** Detecção baseada em coordenadas (Bounding Box simples).
+- **Otimização:** Uso de macros para reduzir repetição de código e facilitar a leitura do Assembly.
 
+---
 
-⌨️ Controles
+## 📝 Licença
 
-Teclas w,a,s,d do teclado para movimentação do jogador
-
-O objetivo do jogador é:
-
-Desviar dos inimigos
-
-Coletar moedas
-
-Sobreviver às ondas
-
-⚙️ Funcionamento do Código
-🔹 jogo1.asm
-
-Arquivo principal responsável por:
-
-Inicialização das variáveis globais
-
-Loop principal do jogo
-
-Controle do jogador
-
-Geração e movimentação de inimigos
-
-Geração e coleta de moedas
-
-Sistema de ondas
-
-Controle de vidas
-
-Detecção de colisões
-
-Transição entre estados do jogo (menu, jogo, vitória e derrota)
-
-🔹 Macros.asm
-
-Contém macros que abstraem operações repetitivas, como:
-
-Desenho e remoção de sprites 8x8
-
-Desenho de linhas (bordas)
-
-Geração de valores aleatórios
-
-Controle de FPS (delay_ms)
-
-Execução de sons MIDI (play_midi)
-
-Essas macros tornam o código mais organizado e legível.
-
-🔹 menu.asm
-
-Responsável por exibir a tela inicial do jogo e aguardar a interação do jogador para iniciar a partida.
-
-🔹 game_over.asm
-
-Contém os dados e rotinas necessárias para exibir a tela de Game Over quando o jogador perde todas as vidas.
-
-🔹 game_win.asm
-
-Responsável por exibir a tela de Vitória quando o jogador conclui o jogo com sucesso.
-
-🎨 Gráficos
-
-O jogo utiliza sprites 8x8
-
-As cores são definidas no formato ARGB
-
-A renderização é feita diretamente na memória de vídeo simulada do MARS (Heap)
-
-🔊 Áudio
-
-O jogo utiliza o syscall MIDI do MARS para reprodução de sons durante a execução, enriquecendo a experiência do jogador.
+Este projeto foi desenvolvido para fins educacionais. Sinta-se à vontade para estudar o código, modificar e utilizar como referência para seus próprios projetos acadêmicos.
