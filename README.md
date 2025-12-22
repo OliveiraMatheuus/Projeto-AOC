@@ -24,7 +24,7 @@ Este jogo foi desenvolvido como **projeto final** da Unidade Curricular de **Arq
 Para executar o projeto, você precisará de:
 
 1.  **Java Runtime Environment (JRE)** instalado.
-2.  **MARS MIPS Simulator**: [Download aqui](https://courses.missouristate.edu/KenVollmar/mars/).
+2.  **MARS MIPS Simulator**.
 
 ---
 
